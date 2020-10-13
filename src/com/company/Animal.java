@@ -1,16 +1,16 @@
 package com.company;
 
-public abstract class Animal {
+public abstract class Animal{
     String name;
-    int hitPoints;
+    int hitPoints = 100;
 
     enum Gender {
         MALE, FEMALE
     }
     Gender gender;
 
-    abstract void feedAnimal();
+    public void feedAnimal(){}
 
-
+public void decreaseHP(){}
 
 }
