@@ -1,13 +1,14 @@
 package com.company;
 
-public class Tiger extends Animal{
-    private int storePrice = 30;
-    private int reproduction = 3;
+public class Tiger extends Animal {
+    private int storePrice = 20;
+    private int reproduction = 2;
 
-    public Tiger(String name){
-        this.name = name;
-        this.storePrice = storePrice;
-        this.gender = gender;
-        this.hitPoints = hitPoints;
+    public Tiger(String name, Gender gender) {
+        super(name,gender);
+    }
+
+    public void feed(){
+        super.feedAnimal();
     }
 }
