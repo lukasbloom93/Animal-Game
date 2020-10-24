@@ -5,8 +5,11 @@ import java.util.Scanner;
 public class Player {
     String name;
     int gold = 100;
-    ArrayList<Animal> playerAnimals;
-    ArrayList<Food> playerFood;
+    ArrayList<Animal> playerAnimals = new ArrayList<>();
+    Bread playerBread = new Bread();
+    Pellets playerPellets = new Pellets();
+    Meat playerMeat = new Meat();
+
 
     public Player(String name) {
         this.name = name;
@@ -14,12 +17,12 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", gold=" + gold +
-                ", playerAnimals=" + playerAnimals +
-                ", playerFood=" + playerFood +
-                '}';
+        return
+                "Gold = " + gold +
+                "   Animals = " + playerAnimals +
+                "   Bread = " + playerBread.amount +
+                "   Pellets = " + playerPellets.amount +
+                "   Meat = " + playerMeat.amount;
     }
 }
 
