@@ -1,14 +1,22 @@
 package com.company;
 
 public class Tiger extends Animal {
-    private int storePrice = 20;
-    private int reproduction = 2;
 
     public Tiger(String name, Gender gender) {
-        super(name,gender);
+        super(name,gender,20,1);
     }
 
-    public void feed(){
-        super.feedAnimal();
+    @Override
+    public void feedAnimal(Food food){
+
+        super.feedAnimal(food);
+    }
+
+    @Override
+    public Animal mate(){
+        Gender gender = Math.random() < 0.5 ? Gender.MALE : Gender.FEMALE;
+        String tigerName = "";
+        Tiger tiger = new Tiger(tigerName,gender);
+        return tiger;
     }
 }
