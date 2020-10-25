@@ -103,57 +103,65 @@ public class Game {
             });
             player.playerAnimals.removeAll(playerAnimalsRemove);
 
-            int action = 0;
-            isValid = false;
-
-            checkInventory();
-
-            do {
-                System.out.println("\n What would you like to do?"
-                        + "\n You may only perform one action per turn."
-                        + "\n If your gold at any point reaches 0 you have lost the game!"
-                        + "\n Type the number of your choice and press Enter to continue."
-                        + "\n"
-                        + "\n 1. Buy Animals"
-                        + "\n 2. Buy Food"
-                        + "\n 3. Feed Animals"
-                        + "\n 4. Mate Animals"
-                        + "\n 5. Sell Animals");
-
-                try {
-                    String actionString = "";
-                    actionString = scan.next();
-                    action = Integer.parseInt(actionString);
-                }catch (Exception e){
-                    scan.reset();
-                }
-                if (action > 5 || action < 1) {
-                    System.out.println("Try again! \n");
-                } else {
-                    isValid = true;
-                }
-            } while (!isValid);
-
-            switch (action) {
-                case 1 -> Store.buyAnimalMenu(player);
-                case 2 -> Store.buyFood(player);
-                case 3 -> Animal.feedAnimalMenu(player);
-                case 4 -> System.out.println("mate animal menu"); //Animal.mateAnimalMenu(player);
-                case 5 -> {checkInventory(); Store.sellAnimalMenu(player);}
-            }
-
-            player.playerAnimals.forEach(Animal::decreaseHP);
-
-            if (player.gold <= 0) {
+            if (player.gold <= 0 && player.playerAnimals.isEmpty()) {
                 System.out.println(player.name + " is out of the game! \n");
                 allPlayers.remove(player);
+                activePlayer--;
                 if(allPlayers.isEmpty()){
                     System.out.println("Game Over!");
                     gameOn = false;
                 }
             }
+            else {
+
+                int action = 0;
+                isValid = false;
+
+                checkInventory();
+
+                do {
+                    System.out.println("\n What would you like to do?"
+                            + "\n You may only perform one action per turn."
+                            + "\n If your gold reaches 0 and you don't have any animals, you have lost the game!"
+                            + "\n Type the number of your choice and press Enter to continue."
+                            + "\n"
+                            + "\n 1. Buy Animals"
+                            + "\n 2. Buy Food"
+                            + "\n 3. Feed Animals"
+                            + "\n 4. Mate Animals"
+                            + "\n 5. Sell Animals");
+
+                    try {
+                        String actionString = "";
+                        actionString = scan.next();
+                        action = Integer.parseInt(actionString);
+                    } catch (Exception e) {
+                        scan.reset();
+                    }
+                    if (action > 5 || action < 1) {
+                        System.out.println("Try again! \n");
+                    } else {
+                        isValid = true;
+                    }
+                } while (!isValid);
+
+                switch (action) {
+                    case 1 -> Store.buyAnimalMenu(player);
+                    case 2 -> Store.buyFood(player);
+                    case 3 -> Animal.feedAnimalMenu(player);
+                    case 4 -> Animal.mateAnimalMenu(player);
+                    case 5 -> {
+                        checkInventory();
+                        Store.sellAnimalMenu(player);
+                    }
+                }
+
+                player.playerAnimals.forEach(Animal::decreaseHP);
+
+            }
+
             roundCounter++;
-            activePlayer = (activePlayer + 1)% playerCount;
+            activePlayer = (activePlayer + 1)% allPlayers.size();
         }
 
         public void gameOver(){

@@ -1,10 +1,9 @@
 package com.company;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
     String name;
-    int gold = 100;
+    int gold = 200;
     ArrayList<Animal> playerAnimals = new ArrayList<>();
     Bread playerBread = new Bread();
     Pellets playerPellets = new Pellets();
@@ -20,9 +19,9 @@ public class Player {
         return
                 "Gold = " + gold +
                 "   Animals = " + playerAnimals +
-                "   Bread = " + playerBread.amount +
-                "   Pellets = " + playerPellets.amount +
-                "   Meat = " + playerMeat.amount;
+                "   Bread = " + playerBread.amount + " Kg" +
+                "   Pellets = " + playerPellets.amount + " Kg" +
+                "   Meat = " + playerMeat.amount + " Kg";
     }
 }
 
