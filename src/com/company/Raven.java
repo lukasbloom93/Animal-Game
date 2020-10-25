@@ -8,7 +8,11 @@ public class Raven extends Animal {
 
     @Override
     public void feedAnimal(Food food){
-        super.feedAnimal(food);
+        if (food.getClass().equals(Bread.class) || (food.getClass().equals(Meat.class))) {
+            super.feedAnimal(food);
+        } else {
+            System.out.println("Ravens can't eat Pellets!");
+        }
     }
 
     @Override

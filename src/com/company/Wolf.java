@@ -7,7 +7,11 @@ public class Wolf extends Animal {
     }
 @Override
     public void feedAnimal(Food food){
+    if (food.getClass().equals(Meat.class)) {
         super.feedAnimal(food);
+    } else {
+        System.out.println("Wolfs can only eat meat!");
+    }
     }
 
     @Override

@@ -8,16 +8,19 @@ public class Bear extends Animal {
     }
 
     @Override
-    public void feedAnimal(Food food){
-        super.feedAnimal(food);
+    public void feedAnimal(Food food) {
+        if (food.getClass().equals(Meat.class)) {
+            super.feedAnimal(food);
+        } else {
+            System.out.println("Bears can only eat meat!");
+        }
     }
 
     @Override
     public Animal mate(){
         Gender gender = Math.random() < 0.5 ? Gender.MALE : Gender.FEMALE;
         String bearName = "";
-        Bear bear = new Bear(bearName,gender);
-        return bear;
+        return new Bear(bearName,gender);
         }
     }
 

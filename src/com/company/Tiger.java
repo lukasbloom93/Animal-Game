@@ -9,7 +9,11 @@ public class Tiger extends Animal {
     @Override
     public void feedAnimal(Food food){
 
-        super.feedAnimal(food);
+        if (food.getClass().equals(Meat.class) || (food.getClass().equals(Pellets.class))) {
+            super.feedAnimal(food);
+        } else {
+            System.out.println("Tigers can't eat bread!");
+        }
     }
 
     @Override
